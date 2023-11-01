@@ -1,0 +1,29 @@
+{
+  "name": "openshiftTest",
+  "version": "1.0.0",
+  "description": "A project made using Square for the sellers",
+  "main": "app.cjs",
+  "type": "module",
+  "scripts": {
+    "start": "node app.cjs"
+  },
+  "author": "Vishal Vats",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "request": "^2.88.2",
+    "cors": "^2.8.5",
+    "knex": "^2.4.2",
+    "mysql": "^2.18.1",
+    "form-data": "^4.0.0",
+    "@mhoc/axios-digest-auth": "^0.8.0",
+    "uuid": "^9.0.0",
+    "square": "^27.0.0"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
