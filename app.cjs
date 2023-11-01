@@ -22,7 +22,8 @@ console.log('Server running on http://%s:%s', ip, port);
 app.get("/", async(req, res) => {
   console.log("Root endpoint")
   console.log(process.env['name'])
-  res.send(`Great stuff, ${process.env['name']} will win this for sure :)`)
+  console.log(process.env['surname'])
+  res.send(`Great stuff, ${process.env['name']} ${process.env['surname']} will win this for sure :)`)
 })
 
 app.get("/test", async(req, res) => {
