@@ -5,10 +5,10 @@ let cors = require('cors');
 const knex = require("knex")({
   client: "mysql",
   connection: {
-    host: process.env.DB_IP,
-    user: process.env.DB_USER,
-    password: process.env.DB_PWD,
-    database: process.env.DB_NAME,
+    host: "http://project-sql-clashingvats-dev.apps.sandbox-m3.1530.p1.openshiftapps.com/",
+    user: "vishal",
+    password: "test",
+    database: "testDB",
   },
 });
 
