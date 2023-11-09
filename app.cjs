@@ -5,10 +5,10 @@ let cors = require('cors');
 const knex = require("knex")({
   client: "mysql",
   connection: {
-    host: "hello-sql",
-    user: "vishal",
-    password: "test",
-    database: "testDB",
+    host: process.env["MYSQL_HOST"],
+    user: process.env["MYSQL_USER"],
+    password: process.env["MYSQL_PASSWORD"],
+    database: process.env["MYSQL_DATABASE"],
   },
 });
 
@@ -32,11 +32,11 @@ console.log('Server running on http://%s:%s', ip, port);
 app.get("/", async(req, res) => {
   const users = await knex("e_users").select("*");
   if(!users.length) {
-    res.send(`Great stuff, ${process.env['name']}. You will win ${process.env['hackathon']} for sure :)`)
+    res.send(`Great stuff, testing user. You will win ${process.env['hackathon']} for sure :)`)
   } else {
     console.log(users)
     console.log(users.length)
-    res.send(`Great stuff, ${users[0].name} : ${process.env['name']}. You will win ${process.env['hackathon']} for sure :)`)
+    res.send(`Great stuff, ${users[0].uName}. You will win ${process.env['hackathon']} for sure :)`)
   }
   
   console.log("Root endpoint")
