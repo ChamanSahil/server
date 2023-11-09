@@ -5,7 +5,7 @@ let cors = require('cors');
 const knex = require("knex")({
   client: "mysql",
   connection: {
-    host: "http://project-sql-clashingvats-dev.apps.sandbox-m3.1530.p1.openshiftapps.com/",
+    host: "hello-sql",
     user: "vishal",
     password: "test",
     database: "testDB",
