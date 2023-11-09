@@ -38,12 +38,8 @@ app.get("/", async(req, res) => {
     users.forEach(user => {
       console.log(user.uName)
     })
-    res.send(`Great stuff, ${users[0].uName}. You will win ${process.env['hackathon']} for sure :)`)
+    res.send(`Great stuff, ${users[0].uName}. You will win this event for sure :)`)
   }
-  
-  console.log("Root endpoint")
-  console.log(process.env['name'])
-  console.log(process.env['hackathon'])
 })
 
 app.get("/test", async(req, res) => {
