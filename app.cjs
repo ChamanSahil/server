@@ -32,7 +32,7 @@ console.log('Server running on http://%s:%s', ip, port);
 app.get("/", async(req, res) => {
   const users = await knex("e_users").select("*");
   if(!users.length) {
-    res.send(`Great stuff, testing user. You will win ${process.env['hackathon']} for sure :)`)
+    res.send(`Great stuff, testing user. You will win the CodeShift Hackathon for sure :)`)
   } else {
     console.log(`Total users: ${users.length}`)
     users.forEach(user => {
