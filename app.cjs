@@ -34,8 +34,7 @@ app.get("/", async(req, res) => {
   if(!users.length) {
     res.send(`Great stuff, testing user. You will win ${process.env['hackathon']} for sure :)`)
   } else {
-    console.log(users.length)
-    console.log(users[0])
+    console.log(`Total users: ${users.length}`)
     users.forEach(user => {
       console.log(user.uName)
     })
