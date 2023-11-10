@@ -403,6 +403,7 @@ app.post("/webhook", async (req, res) => {
 
 //BRANDS ENDPOINT
 app.post("/validateEmail", async(req, res) => {
+  console.log("Validating the email")
   try{
     if(req.body.email === "") {
       res.send("ERROR:Email can't be empty")
@@ -410,6 +411,7 @@ app.post("/validateEmail", async(req, res) => {
     
     if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email)) {
       res.send("ERROR:Provide a valid email address")
+        console.log("Invalid email provided")
       return
     }
     
@@ -439,7 +441,8 @@ app.post("/validateEmail", async(req, res) => {
         res.send(`ERROR:${err}`)
         return
       }
-    
+
+      console.log("Valid email! Sent the verification email")
       res.send(`Can create a new account:${pwd}`)
     } 
     else {
@@ -451,11 +454,13 @@ app.post("/validateEmail", async(req, res) => {
 })
 
 app.post("/createBrand", async(req, res) => {
+  console.log("Creating the brand (website)")
   try {
     const body = req.body
     
     // validating the request body    
     if(body.bName === "" || body.bEmail === "" || body.bAddress === "" || body.bStream === "") {
+      console.log("Error in creating the brand")
       res.send("ERROR:Provide all required parameters")
       return
     }
@@ -482,7 +487,7 @@ app.post("/createBrand", async(req, res) => {
     })
     
     // sendMsg("917011238307", `${body.bEmail} created an account on the Square Hub website`, true, "text")
-    
+    res.send("SUCCESS! Created the brand")
     res.send(body.bName)
   } catch(err) {
     res.send("ERROR:Server error Line 268")
@@ -490,6 +495,7 @@ app.post("/createBrand", async(req, res) => {
 })
 
 app.post("/login", async(req, res) => {
+  console.log("A brand is trying to login")
   const body = req.body
   
   try {
@@ -497,9 +503,11 @@ app.post("/login", async(req, res) => {
     // no user exists with the given email-pwd pair
     if(!users.length) {
       // sendMsg("917011238307", `${body.email} can't log into the website`, true, "text")
+     console.log("Wrong login credentials used (brands)")
       res.send("ERROR:Invalid credentials")
     } else {
       // sendMsg("917011238307", `${body.email} successfully logged into the website`, true, "text")
+      console.log("SUCCESS! Brand logged into the website")
       res.send(users[0]["bName"])
     } 
   } catch(err) {
@@ -508,6 +516,7 @@ app.post("/login", async(req, res) => {
 })
 
 app.post("/addProduct", async(req, res) => {
+  console.log("Brand is trying to add a product")
   const body = req.body
   
   if(body.pName.length > 20) {
@@ -538,7 +547,8 @@ app.post("/addProduct", async(req, res) => {
     
     console.log(`PICKUP IS: ` + body.pickup)
     console.log(body.pickup)
-    
+
+    console.log("SUCCESS! Product is added and the concerned users have been nudged")
     // have to nudge the user if they have not turned off the property
     nudgeUsers(body.pGender, body.pAgeGroup, body.pName, body.pLink, body.pDesc, body.pPrice, pCategory[0]["bName"], pCategory[0]["bStream"], body.pLoc)
     
@@ -550,6 +560,7 @@ app.post("/addProduct", async(req, res) => {
 })
 
 app.post("/fetchProducts", async(req, res) => {
+  console.log("Brands fetched their product inventory")
   const body = req.body
   
   try {
@@ -565,6 +576,7 @@ app.post("/fetchProducts", async(req, res) => {
 })
 
 app.post("/deleteProduct", async (req, res) => {
+  console.log("Brand has reqeusted for PRODUCT DELETION !")
   const body = req.body
   
   const del = await knex('e_products').where({pName: body.pName, bEmail: body.bEmail, pLoc: body.pLoc}).del()
