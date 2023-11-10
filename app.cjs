@@ -184,13 +184,13 @@ app.get("/", async(req, res) => {
   const users = await knex('e_users').select('*')
   console.log("Users are: ")
   users.forEach(user => {
-      console.log(user)
+      console.log(user.uName)
   })
 
   const brands = await knex('e_brands').select('*')
   console.log("Brands are: ")
   brands.forEach(brand => {
-      console.log(brand)
+      console.log(brand.bName)
   })
     
   res.send("Great stuff, will win this")
