@@ -1,7 +1,7 @@
 {
   "name": "openshiftTest",
   "version": "1.0.0",
-  "description": "A project made using Square for the sellers",
+  "description": "A project made with heart and soul",
   "main": "app.cjs",
   "type": "module",
   "scripts": {
