@@ -515,28 +515,6 @@ app.post("/login", async(req, res) => {
   }
 })
 
-// function to get the output of the openshift AI model:
-app.post("/getMLOutput", async(req, res) => {
-    let result = await fetch(req.body.url)
-        .then(response => response.json())
-        .then(data => {
-            console.log(`Get ML Output is: ${data}`)
-            return data
-        })
-
-    let returnString = ""
-    
-    // Only a single key-value object will be returned from the flask application
-    Object.entries(result).forEach(([key, value]) => {
-        if(key != "Error") {
-            console.log(`${key.toUpperCase()} : ${(value*100).toFixed(1)} %`)
-            returnString = `${key.toUpperCase()} : ${(value*100).toFixed(1)} %`
-        } 
-    })
-
-    res.send(returnString)
-})
-
 app.post("/addProduct", async(req, res) => {
   console.log("Brand is trying to add a product")
   const body = req.body
