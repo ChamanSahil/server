@@ -535,7 +535,7 @@ app.post("/getMLOutput", async(req, res) => {
         } 
     })
 
-    return returnString
+    res.send(returnString)
 })
 
 app.post("/addProduct", async(req, res) => {
