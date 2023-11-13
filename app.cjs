@@ -904,6 +904,21 @@ app.post("/getBrandProducts", async (req, res) => {
   else res.send(brandProducts)
 })
 
+// AI-ML endpoint
+app.post("/getLabelProducts", async (req, res) => {
+  let labels = req.body.labels
+  let finalResult = []
+
+    labels.forEach(label => {
+        const brandProducts = await knex('e_products').select('*')
+            .whereLike('label', label)
+        console.log(brandProducts)
+        if(brandProducts.length) finalResult.push(brandProducts)
+    })
+
+    res.send(finalResult)
+})
+
 app.post("/getAchievements", async (req, res) => {
   const achievements = await knex('e_users').select('achievements').where({uEmail: req.body.email})
   res.send(achievements[0]["achievements"])
