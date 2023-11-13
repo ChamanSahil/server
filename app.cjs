@@ -918,6 +918,8 @@ app.post("/getLabelProducts", async (req, res) => {
         
         console.log(brandProducts[0]['pName'])
         brandProducts.forEach(prod => {
+            console.log(prod)
+            console.log(finalResult)
             finalResult.push(prod)
         })
         
