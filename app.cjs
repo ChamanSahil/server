@@ -542,7 +542,8 @@ app.post("/addProduct", async(req, res) => {
       pPrice     : body.pPrice,
       pCategory  : pCategory[0]["bStream"],
       companyName: pCategory[0]["bName"],
-      pickup     : body.pickup
+      pickup     : body.pickup,
+      label      : body.label
     }) 
     
     console.log(`PICKUP IS: ` + body.pickup)
@@ -551,12 +552,11 @@ app.post("/addProduct", async(req, res) => {
     console.log("SUCCESS! Product is added and the concerned users have been nudged")
     // have to nudge the user if they have not turned off the property
     nudgeUsers(body.pGender, body.pAgeGroup, body.pName, body.pLink, body.pDesc, body.pPrice, pCategory[0]["bName"], pCategory[0]["bStream"], body.pLoc)
-    
+    res.send("Success")
   } catch(err) {
     console.log("ERROR at line 306")
+    res.send("ERROR")
   }
-  
-  res.send("Success")
 })
 
 app.post("/fetchProducts", async(req, res) => {
