@@ -11,6 +11,13 @@ const client = new Client({
     environment: Environment.Sandbox,
 });
 
+const AxiosDigestAuth =  require('@mhoc/axios-digest-auth').default;
+
+const digestAuth = new AxiosDigestAuth({
+  username: process.env.C2Q_username,
+  password: process.env.C2Q_pwd,
+})
+
 const knex = require("knex")({
   client: "mysql",
   connection: {
