@@ -912,12 +912,14 @@ app.post("/getLabelProducts", async (req, res) => {
     labels.forEach(async label => {
         let brandProducts = await knex('e_products').select('*')
             .whereLike('label', label)
+        
         console.log(typeof(brandProducts))
+        
         if(brandProducts.length) {
-            brandProducts[0].forEach(product => {
-                finalResult.push(product)
-            })
-            console.log(finalResult)
+            console.log(brandProducts['pName'])
+            // brandProducts.forEach(product => {
+            //     finalResult.push(product)
+            // })
         }
     })
 
