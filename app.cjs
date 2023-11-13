@@ -916,10 +916,10 @@ app.post("/getLabelProducts", async (req, res) => {
         let brandProducts = await knex('e_products').select('*')
             .whereLike('label', label)
         
-        console.log(typeof(brandProducts))
-        console.log(brandProducts)
-        console.log(brandProducts[0])
         console.log(brandProducts[0]['pName'])
+        brandProducts.forEach(prod => {
+            finalResult.push(prod)
+        })
         
         if(brandProducts.length) {
         }
