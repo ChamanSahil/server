@@ -914,7 +914,9 @@ app.post("/getLabelProducts", async (req, res) => {
             .whereLike('label', label)
         console.log(typeof(brandProducts))
         if(brandProducts.length) {
-            finalResult.push(brandProducts)
+            brandProducts.forEach(product => {
+                finalResult.push(product)
+            })
             console.log(finalResult)
         }
     })
