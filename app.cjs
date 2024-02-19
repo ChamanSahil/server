@@ -190,8 +190,6 @@ app.get("/", async(req, res) => {
   res.send("Great stuff, will win this")
 })
 
-console.log(process.env)
-
 // WhatsApp configuration endpoints
 app.get("/webhook", async (req, res) => {
   const verify_token = "VishalVats";
