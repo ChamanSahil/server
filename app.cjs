@@ -185,7 +185,7 @@ async function nudgeUsers(gender, ageGroup, name, link, desc, price, company, st
   })
 }
 
-app.get("/", async(req, res) => {
+app.get("/test", async(req, res) => {
   res.send("Great stuff, will win this")
 })
 
