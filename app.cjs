@@ -186,8 +186,11 @@ async function nudgeUsers(gender, ageGroup, name, link, desc, price, company, st
 }
 
 app.get("/", async(req, res) => {
+  console.log("Basic route requested")
   res.send("Great stuff, will win this")
 })
+
+console.log(process.env)
 
 // WhatsApp configuration endpoints
 app.get("/webhook", async (req, res) => {
