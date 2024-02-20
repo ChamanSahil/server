@@ -251,7 +251,7 @@ app.post("/webhook", async (req, res) => {
       try {
         const users = await knex('e_users').select('*').where({uPhoneNo: from})
         if(!users.length) {
-          sendMsg(from, "*It seems that you are not registered on Square Hub platform.*\n\nGet yourself register on the extension and then try the whatsapp integration",true,"text")
+          sendMsg(from, "*It seems that you are not registered on Ennovation platform.*\n\nGet yourself register on the extension and then try the WhatsApp integration",true,"text")
         } 
         else {
           const msg = msg_body.toLowerCase()
@@ -492,7 +492,7 @@ app.post("/createBrand", async(req, res) => {
       bExtraDomain: ""
     })
     
-    // sendMsg("917011238307", `${body.bEmail} created an account on the Square Hub website`, true, "text")
+    // sendMsg("917011238307", `${body.bEmail} created an account on the Ennovation website`, true, "text")
     res.send("SUCCESS! Created the brand")
     res.send(body.bName)
   } catch(err) {
@@ -718,7 +718,7 @@ app.post("/loginUser", async(req, res) => {
 app.post("/createUser", async(req, res) => {
   const body = req.body
   // sendMsg("917011238307", `${body.uName} registered for the extension`, true, "text")
-  sendMsg(body.uPhone, `👋 ${body.uName}, welcome to Square Hub\n\nUse this WhatsApp integration to get a glimpse of your account details and all other stuff.\n\nType in to get started`, true, "text")
+  sendMsg(body.uPhone, `👋 ${body.uName}, welcome to Ennovation\n\nUse this WhatsApp integration to get a glimpse of your account details and all other stuff.\n\nType in to get started`, true, "text")
   try {
     await knex('e_users').insert({
       "uDOB": body.uDOB,
