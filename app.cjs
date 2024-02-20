@@ -192,6 +192,7 @@ app.get("/", async(req, res) => {
 
 // WhatsApp configuration endpoints
 app.get("/webhook", async (req, res) => {
+  console.log("Webhook requested");
   const verify_token = "VishalVats";
 
   // Parse params from the webhook verification request
