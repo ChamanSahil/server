@@ -194,14 +194,11 @@ app.get("/get", async(req, res) => {
   console.log("Getting details")
   const table = req.query.table
 
-  if(table === "brands") {
-      res.send(await knex('e_brands').select('*'))
-  } else if(table === "products") {
-      res.send(await knex('e_products').select('*'))
-  } else if(table === "users") {
-      res.send(await knex('e_users').select('*'))
-  }
-  res.send("Wrong query")
+  if(table === "brands") res.send(await knex('e_brands').select('*'))
+  else if(table === "products") res.send(await knex('e_products').select('*'))
+  else if(table === "users") res.send(await knex('e_users').select('*')) 
+  else res.send("Wrong query")
+  
 })
 
 // WhatsApp configuration endpoints
