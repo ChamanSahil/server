@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "A project made with heart and soul",
   "main": "app.cjs",
-  "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.cjs"
   },
   "author": "Vishal Vats",
   "license": "ISC",
