@@ -45,21 +45,19 @@ console.log('Server running on http://%s:%s', ip, port);
 // Utilities function
 async function chat2Query(prompt) {
   try {
-      const response = await digestAuth.request({
-      headers: { 
-          Accept: "application/json",
-          ContentType: "application/json"
-      },
-      data: {
-          "cluster_id": "1379661944646227701",
-          "database": "tifihub",
-          "tables": [
-            "e_products"
-          ],
-          "raw_question": prompt + ". (For gender, use m for males, f for females, everyone for everyone). (If no specific gender or age group is mentioned,  then use everyone for that column value) Return all of the 11 cloumns for each row"
-      },
-      method: "POST",
-      url: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/v2/chat2data",
+      const response =  await digestAuth.request({
+          headers: { 
+              Accept: "application/json",
+              ContentType: "application/json"
+          },
+          data: {
+              "cluster_id": "1379661944646227701",
+              "database": "tifihub",
+              "tables": ["e_products"],
+              "instruction": prompt + ". (For gender, use m for males, f for females, everyone for everyone). (If no specific gender or age group is mentioned,  then use everyone for that column value) Return all of the 11 cloumns for each row"
+          },
+          method: "POST",
+          url: "https://data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/v1/chat2data",
     });
 
     // old url was: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data" (instruction was there instead of raw_question)
