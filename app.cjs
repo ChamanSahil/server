@@ -4,6 +4,12 @@ let cors = require('cors');
 const token = process.env.WHATSAPP_TOKEN;
 
 const uuid = require('uuid')
+const { Client, Environment, ApiError } = require("square");
+
+const client = new Client({
+    accessToken: process.env.SQUARE_TOKEN,
+    environment: Environment.Sandbox,
+});
 
 const knex = require("knex")({
   client: "mysql",
