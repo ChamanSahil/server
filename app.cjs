@@ -59,11 +59,11 @@ async function chat2Query(prompt) {
           "instruction": prompt + ". (For gender, use m for males, f for females, everyone for everyone). (If no specific gender or age group is mentioned,  then use everyone for that column value) Return all of the 11 cloumns for each row"
       }),
       method: "POST",
-      url: "https://data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/v2/chat2data",
+      url: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/v2/chat2data",
     });
 
-    // old url was: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data"
-      
+    // old url was: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data" 
+    
     if(response.data.data.result.code !== 200 && response.data.data.result.code !== 429) {
       console.log("Error in the prompt. ")
       return "ERROR:No matching results found for the prompt!!"
@@ -594,9 +594,6 @@ app.post("/deleteProduct", async (req, res) => {
 app.post("/chat2Query", async(req, res) => {
   const body = req.body
   console.log("Prompt is: " + body.prompt)
-
-  console.log("digestAuth is:")
-  console.log(digestAuth);
   
   const response = await chat2Query(body.prompt)
   res.send(response) 
