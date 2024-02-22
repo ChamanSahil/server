@@ -474,6 +474,7 @@ app.post("/createBrand", async(req, res) => {
   console.log("Creating the brand (website)")
   try {
     const body = req.body
+    console.log(body)
     
     // validating the request body    
     if(body.bName === "" || body.bEmail === "" || body.bAddress === "" || body.bStream === "") {
@@ -488,6 +489,7 @@ app.post("/createBrand", async(req, res) => {
     }
     
     if(body.bAddress.length > 50) {
+      console.log("Address is greater than 50 characters")
       res.send("ERROR:Address should be of less than 50 characters")
       return
     }
