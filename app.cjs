@@ -190,6 +190,20 @@ app.get("/", async(req, res) => {
   res.send("Great stuff, will win this")
 })
 
+app.get("/get", async(req, res) => {
+  console.log("Getting details")
+  const table = req.query.table
+
+  if(table === "brands") {
+      console.log(await knex('e_brands').select('*'))
+  } else if(table === "products") {
+      console.log(await knex('e_products').select('*'))
+  } else if(table === "users") {
+      console.log(await knex('e_users').select('*'))
+  }
+  res.send("Fetched data")
+})
+
 // WhatsApp configuration endpoints
 app.get("/webhook", async (req, res) => {
   const verify_token = "VishalVats";
