@@ -4,12 +4,6 @@ let cors = require('cors');
 const token = process.env.WHATSAPP_TOKEN;
 
 const uuid = require('uuid')
-const { Client, Environment, ApiError } = require("square");
-
-const client = new Client({
-    accessToken: process.env.SQUARE_TOKEN,
-    environment: Environment.Sandbox,
-});
 
 const knex = require("knex")({
   client: "mysql",
@@ -1019,72 +1013,5 @@ app.post("/statEmails", async (req, res) => {
     }
     
     res.send("SUCCESS")
-  }
-})
-
-// Square and hardware related calls
-app.post("/processPayments", async (req, res) => {
-  let nonceToken = req.body.token
-  let amount = req.body.amount*100
-  let email = req.body.email
-  console.log(nonceToken, amount, email)
-  
-  try {
-    const payment = await client.paymentsApi.createPayment({
-        sourceId: nonceToken,
-        idempotencyKey: uuid.v4(),
-        amountMoney: {
-          amount: amount,
-          currency: 'USD'
-        },
-        autocomplete: true,
-        locationId: process.env.LOCATION_ID
-    });
-    await knex('e_users').where({uEmail:email}).update({orderID: JSON.parse(payment.body).payment.id})
-    res.send(JSON.parse(payment.body).payment.id)
-  } catch(err) {
-    console.log(err)
-    res.send("ERROR")
-  }
-});
-
-app.post("/addAmountTotag", async(req, res) => {
-  const body = req.body
-  console.log(body.email, body.amount)
-  await knex('e_users').where({uEmail:body.email}).update({tagAmount: body.amount})
-  res.send("OKAY")
-})
-
-app.get("/checkOrder", async(req, res)=> {
-  const tag = req.query["tag"]
-  console.log(tag)
-
-  const order = await knex('e_users').select('*').where({tag: tag})
-  if(!order.length) {
-    res.send("UNKNOWN TAG")
-  } else {
-    if(order[0]['orderID'] == "" || order[0]['tagAmount'] == 0) {
-      res.send("NO TAG ORDERS")
-    } else if(order[0]['orderID'] != "" && order[0]['tagAmount'] > 0) {
-      console.log(`${order[0]['tagAmount']}`)
-      res.send(`Amount: $${order[0]['tagAmount']}`)
-    }
-  }
-})
-
-app.get("/processPayment", async(req, res) => {
-  const tag = req.query["tag"]
-  console.log("Process payments " + tag)
-  
-  const order = await knex('e_users').select('*').where({tag: tag})
-  if(!order.length) {
-    res.send("NO TAG ORDERS")
-  } else {
-    if(order[0]['tagAmount'] == 0) {
-      res.send("NO TAG ORDERS")
-    } else {
-      await knex('e_users').where({tag: tag}).update({orderID: "", tagAmount: 0})
-      res.send("PURCHASE DONE") 
-    } 
   }
 })
