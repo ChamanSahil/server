@@ -475,7 +475,8 @@ app.post("/createBrand", async(req, res) => {
   try {
     const body = req.body
     console.log(body)
-    
+    console.log(typeof(body))
+      
     // validating the request body    
     if(body.bName === "" || body.bEmail === "" || body.bAddress === "" || body.bStream === "") {
       console.log("Error in creating the brand")
@@ -505,8 +506,7 @@ app.post("/createBrand", async(req, res) => {
       "bExtraDomain": ""
     })
     
-    res.send("SUCCESS! Created the brand")
-    res.send(body.bName)
+    res.send("SUCCESS! Created the brand: " + body.bName)
   } catch(err) {
     res.send("ERROR:Server error Line 268")
   }
