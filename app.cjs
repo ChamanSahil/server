@@ -486,13 +486,12 @@ app.post("/createBrand", async(req, res) => {
       bEmail      : body.bEmail,
       bAddress    : body.bAddress,
       bStream     : body.bStream,
-      pwd         : body.pwd,
+      pwd         : "",
       bDetails    : body.bDetails,
       bDomains    : "",
       bExtraDomain: ""
     })
     
-    // sendMsg("917011238307", `${body.bEmail} created an account on the Ennovation website`, true, "text")
     res.send("SUCCESS! Created the brand")
     res.send(body.bName)
   } catch(err) {
