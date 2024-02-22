@@ -56,13 +56,13 @@ async function chat2Query(prompt) {
           "tables": [
             "e_products"
           ],
-          "instruction": prompt + ". (For gender, use m for males, f for females, everyone for everyone). (If no specific gender or age group is mentioned,  then use everyone for that column value) Return all of the 11 cloumns for each row"
+          "raw_question": prompt + ". (For gender, use m for males, f for females, everyone for everyone). (If no specific gender or age group is mentioned,  then use everyone for that column value) Return all of the 11 cloumns for each row"
       }),
       method: "POST",
       url: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/v2/chat2data",
     });
 
-    // old url was: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data" 
+    // old url was: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data" (instruction was there instead of raw_question)
     
     if(response.data.data.result.code !== 200 && response.data.data.result.code !== 429) {
       console.log("Error in the prompt. ")
