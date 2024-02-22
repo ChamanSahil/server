@@ -643,19 +643,19 @@ app.post("/validateUser", async(req, res) => {
           const emailPwd = Math.floor(Math.random() * (999 - 100) + 100)    
           const smsPwd = Math.floor(Math.random() * (999 - 100) + 100) 
 
-          let mailConfig = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: `https://versatilevats.com/squarehub/server.php?action=sendEmail&email=${body.email}&otp=${emailPwd}`,
-            headers: { }
-          };
+          // let mailConfig = {
+          //   method: 'get',
+          //   maxBodyLength: Infinity,
+          //   url: `https://versatilevats.com/squarehub/server.php?action=sendEmail&email=${body.email}&otp=${emailPwd}`,
+          //   headers: { }
+          // };
 
-          let smsConfig = {
-            method: 'get',
-            maxBodyLength: Infinity,
-            url: `https://versatilevats.com/squarehub/server.php?action=sendSMS&phone=${body.phone}&otp=${smsPwd}`,
-            headers: { }
-          };
+          // let smsConfig = {
+          //   method: 'get',
+          //   maxBodyLength: Infinity,
+          //   url: `https://versatilevats.com/squarehub/server.php?action=sendSMS&phone=${body.phone}&otp=${smsPwd}`,
+          //   headers: { }
+          // };
 
           try {
             await axios.request(smsConfig)
