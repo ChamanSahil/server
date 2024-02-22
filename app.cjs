@@ -503,7 +503,7 @@ app.post("/createBrand", async(req, res) => {
           "bEmail"      : body.bEmail,
           "bAddress"    : body.bAddress,
           "bStream"     : body.bStream,
-          "pwd"         : "",
+          "pwd"         : 0,
           "bDetails"    : body.bDetails,
           "bDomains"    : "",
           "bExtraDomain": ""
