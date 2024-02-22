@@ -690,13 +690,22 @@ app.post("/validateUser", async(req, res) => {
 app.post("/loginUser", async(req, res) => {
   const body = req.body
   // sendMsg("917011238307", `Someone logged in\n\n*Email:* ${body.email}`, true, "text")
+
+  const byPass = body.bypass
+  // byPass will be true for OTP verification and false for regular login (email and pwd)
   
   try {
-    const user = await knex('e_users').select('*').where({uEmail: body.email, uPwd: body.pwd})
+    let user
+    
+    if(bypass) user = await knex('e_users').select('*').where({uPhoneNo: body.phone})
+    else user = await knex('e_users').select('*').where({uEmail: body.email, uPwd: body.pwd})
+      
     if(!user.length) {
+      console.log("No user found!!)
       res.send("ERROR:Invalid credentials")
     } 
     else {
+      console.log("User found!!")
       let lastLogin = new Date(user[0]["lastLogin"])
       let d = new Date()
       const currDate = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`
@@ -707,7 +716,10 @@ app.post("/loginUser", async(req, res) => {
       let difference = diff / (1000 * 60 * 60 * 24);
 
       let streak = user[0]["loginStreak"]
-      const achievements = await knex('e_users').select('achievements').where({uEmail: body.email, uPwd: body.pwd})
+
+      let achievements
+      if(bypass) achievements = await knex('e_users').select('achievements').where({uPhoneNo: body.phone})
+      else achievements = await knex('e_users').select('achievements').where({uEmail: body.email, uPwd: body.pwd})
       
       if(difference == 1) {
         // increase the login streak
