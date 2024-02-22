@@ -496,21 +496,24 @@ app.post("/createBrand", async(req, res) => {
     }
 
     console.log("INDIA :"+ body.bName.toLowerCase() + " " + body.bEmail + " " + body.bAddress + " " + body.bDetails)
-    
-    await knex('e_brands').insert({
-      "bName"       : body.bName.toLowerCase(),
-      "bEmail"      : body.bEmail,
-      "bAddress"    : body.bAddress,
-      "bStream"     : body.bStream,
-      "pwd"         : "",
-      "bDetails"    : body.bDetails,
-      "bDomains"    : "",
-      "bExtraDomain": ""
-    })
+
+    try {
+        await knex('e_brands').insert({
+          "bName"       : body.bName.toLowerCase(),
+          "bEmail"      : body.bEmail,
+          "bAddress"    : body.bAddress,
+          "bStream"     : body.bStream,
+          "pwd"         : "",
+          "bDetails"    : body.bDetails,
+          "bDomains"    : "",
+          "bExtraDomain": ""
+        })
+        res.send({"result": "SUCCESS! Created the brand: " + body.bName})
+    } catch(err) {
+        res.send({"ERROR": err})
+    }
 
     console.log("IS THE BEST")
-    
-    res.send({"result": "SUCCESS! Created the brand: " + body.bName})
   } catch(err) {
     res.send({"result": "ERROR:Server error Line 268"})
   }
