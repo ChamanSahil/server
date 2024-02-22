@@ -757,7 +757,7 @@ app.post("/createUser", async(req, res) => {
     res.send("SUCCESS")
   }
   catch(err) {
-    res.send("ERORR at line 484")
+    res.send(err)
   }
 })
 
