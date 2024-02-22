@@ -480,7 +480,7 @@ app.post("/createBrand", async(req, res) => {
     // validating the request body    
     if(body.bName === "" || body.bEmail === "" || body.bAddress === "" || body.bStream === "") {
       console.log("Error in creating the brand")
-      res.send({"ERROR:"Provide all required parameters"})
+      res.send({"ERROR":"Provide all required parameters"})
       return
     }
     
