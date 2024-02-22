@@ -495,14 +495,14 @@ app.post("/createBrand", async(req, res) => {
     }
     
     await knex('e_brands').insert({
-      bName       : body.bName.toLowerCase(),
-      bEmail      : body.bEmail,
-      bAddress    : body.bAddress,
-      bStream     : body.bStream,
-      pwd         : "",
-      bDetails    : body.bDetails,
-      bDomains    : "",
-      bExtraDomain: ""
+      "bName"       : body.bName.toLowerCase(),
+      "bEmail"      : body.bEmail,
+      "bAddress"    : body.bAddress,
+      "bStream"     : body.bStream,
+      "pwd"         : "",
+      "bDetails"    : body.bDetails,
+      "bDomains"    : "",
+      "bExtraDomain": ""
     })
     
     res.send("SUCCESS! Created the brand")
@@ -550,18 +550,18 @@ app.post("/addProduct", async(req, res) => {
   try {
     const pCategory = await knex('e_brands').select('bStream').select('bName').where({bEmail: body.bEmail})
     await knex('e_products').insert({
-      pName      : body.pName,
-      bEmail     : body.bEmail,
-      pLink      : "",
-      pDesc      : body.pDesc,
-      pGender    : body.pGender,
-      pAgeGroup  : body.pAgeGroup,
-      pLoc       : body.pLoc,
-      pPrice     : body.pPrice,
-      pCategory  : pCategory[0]["bStream"],
-      companyName: pCategory[0]["bName"],
-      pickup     : body.pickup,
-      label      : body.label
+      "pName"      : body.pName,
+      "bEmail"     : body.bEmail,
+      "pLink"      : "",
+      "pDesc"      : body.pDesc,
+      "pGender"    : body.pGender,
+      "pAgeGroup"  : body.pAgeGroup,
+      "pLoc"       : body.pLoc,
+      "pPrice"     : body.pPrice,
+      "pCategory"  : pCategory[0]["bStream"],
+      "companyName": pCategory[0]["bName"],
+      "pickup"     : body.pickup,
+      "label"      : body.label
     }) 
     
     console.log(`PICKUP IS: ` + body.pickup)
