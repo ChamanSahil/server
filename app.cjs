@@ -59,9 +59,11 @@ async function chat2Query(prompt) {
           "instruction": prompt + ". (For gender, use m for males, f for females, everyone for everyone). (If no specific gender or age group is mentioned,  then use everyone for that column value) Return all of the 11 cloumns for each row"
       }),
       method: "POST",
-      url: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data",
+      url: "https://data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/v2/chat2data",
     });
 
+    // old url was: "https://eu-central-1.data.tidbcloud.com/api/v1beta/app/chat2query-BOoendGj/endpoint/chat2data"
+      
     if(response.data.data.result.code !== 200 && response.data.data.result.code !== 429) {
       console.log("Error in the prompt. ")
       return "ERROR:No matching results found for the prompt!!"
