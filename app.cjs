@@ -592,6 +592,9 @@ app.post("/deleteProduct", async (req, res) => {
 app.post("/chat2Query", async(req, res) => {
   const body = req.body
   console.log("Prompt is: " + body.prompt)
+
+  console.log("digestAuth is:")
+  console.log(digestAuth);
   
   const response = await chat2Query(body.prompt)
   res.send(response) 
