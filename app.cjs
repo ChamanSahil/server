@@ -480,18 +480,18 @@ app.post("/createBrand", async(req, res) => {
     // validating the request body    
     if(body.bName === "" || body.bEmail === "" || body.bAddress === "" || body.bStream === "") {
       console.log("Error in creating the brand")
-      res.send("ERROR:Provide all required parameters")
+      res.send({"ERROR:"Provide all required parameters"})
       return
     }
     
     if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(body.bEmail)) {
-      res.send("ERROR:Provide a valid email address")
+      res.send({"ERROR": "Provide a valid email address"})
       return
     }
     
     if(body.bAddress.length > 50) {
       console.log("Address is greater than 50 characters")
-      res.send("ERROR:Address should be of less than 50 characters")
+      res.send({"ERROR": "Address should be of less than 50 characters"})
       return
     }
     
@@ -506,9 +506,9 @@ app.post("/createBrand", async(req, res) => {
       "bExtraDomain": ""
     })
     
-    res.send("SUCCESS! Created the brand: " + body.bName)
+    res.send({"result": "SUCCESS! Created the brand: " + body.bName})
   } catch(err) {
-    res.send("ERROR:Server error Line 268")
+    res.send({"result": "ERROR:Server error Line 268"})
   }
 })
 
