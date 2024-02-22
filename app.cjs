@@ -494,6 +494,8 @@ app.post("/createBrand", async(req, res) => {
       res.send({"ERROR": "Address should be of less than 50 characters"})
       return
     }
+
+    console.log("INDIA :"+ body.bName.toLowerCase() + " " + body.bEmail + " " + body.bAddress + " " + body.bDetails)
     
     await knex('e_brands').insert({
       "bName"       : body.bName.toLowerCase(),
@@ -505,6 +507,8 @@ app.post("/createBrand", async(req, res) => {
       "bDomains"    : "",
       "bExtraDomain": ""
     })
+
+    console.log("IS THE BEST")
     
     res.send({"result": "SUCCESS! Created the brand: " + body.bName})
   } catch(err) {
