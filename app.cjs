@@ -737,7 +737,7 @@ app.post("/loginUser", async(req, res) => {
 app.post("/createUser", async(req, res) => {
   const body = req.body
   // sendMsg("917011238307", `${body.uName} registered for the extension`, true, "text")
-  sendMsg(body.uPhone, `👋 ${body.uName}, welcome to Ennovation\n\nUse this WhatsApp integration to get a glimpse of your account details and all other stuff.\n\nType in to get started`, true, "text")
+  // sendMsg(body.uPhone, `👋 ${body.uName}, welcome to Ennovation\n\nUse this WhatsApp integration to get a glimpse of your account details and all other stuff.\n\nType in to get started`, true, "text")
   try {
     await knex('e_users').insert({
       "uDOB": body.uDOB,
@@ -884,7 +884,7 @@ app.post("/createFeedback", async(req, res) => {
                     `*Type:* ${body.type}\n\n`+
                     `*Feedback content:* ${body.msg}`
   
-  sendMsg(achievements[0]["uPhoneNo"], feedbackMsg, true, "text")
+  // sendMsg(achievements[0]["uPhoneNo"], feedbackMsg, true, "text")
   
   // if achievements is already provided
   if(achievements[0]["achievements"].includes("f")) {
