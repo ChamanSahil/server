@@ -742,7 +742,7 @@ app.post("/loginUser", async(req, res) => {
       
       console.log("Current date is " + currDate)
 
-      if(byPass) await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({lastLogin: currDate})
+      if(byPass) await knex('e_users').where({uPhoneNo: body.phone}).update({lastLogin: currDate})
       else await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({lastLogin: currDate})
 
       if(achievements[0]["achievements"].includes("l")) {
