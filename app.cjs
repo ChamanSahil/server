@@ -723,11 +723,20 @@ app.post("/loginUser", async(req, res) => {
       
       if(difference == 1) {
         // increase the login streak
-        if(!user[0]["achievements"].includes("l")) await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({loginStreak: Number(user[0]["loginStreak"])+1, achievements: user[0]["achievements"]+"l"})
-        else await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({loginStreak: Number(user[0]["loginStreak"])+1})
+        if(byPass) {
+            if(!user[0]["achievements"].includes("l")) await knex('e_users').where({uPhoneNo: body.phone}).update({loginStreak: Number(user[0]["loginStreak"])+1, achievements: user[0]["achievements"]+"l"})
+            else await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({uPhoneNo: body.phone})   
+        } else {
+            if(!user[0]["achievements"].includes("l")) await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({loginStreak: Number(user[0]["loginStreak"])+1, achievements: user[0]["achievements"]+"l"})
+            else await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({loginStreak: Number(user[0]["loginStreak"])+1})
+        }
         streak++
       } else if(difference > 1) {
-        await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({loginStreak: 0})
+        if(byPass) {
+            await knex('e_users').where({uPhoneNo: body.phone}).update({loginStreak: 0})
+        } else {
+            await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({loginStreak: 0})   
+        }
         streak = 0;
       }
       
