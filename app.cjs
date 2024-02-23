@@ -696,8 +696,8 @@ app.post("/loginUser", async(req, res) => {
   
   try {
     let user
-    
-    if(bypass) user = await knex('e_users').select('*').where({uPhoneNo: body.phone})
+      
+    if(byPass) user = await knex('e_users').select('*').where({uPhoneNo: body.phone})
     else user = await knex('e_users').select('*').where({uEmail: body.email, uPwd: body.pwd})
       
     if(!user.length) {
@@ -718,7 +718,7 @@ app.post("/loginUser", async(req, res) => {
       let streak = user[0]["loginStreak"]
 
       let achievements
-      if(bypass) achievements = await knex('e_users').select('achievements').where({uPhoneNo: body.phone})
+      if(byPass) achievements = await knex('e_users').select('achievements').where({uPhoneNo: body.phone})
       else achievements = await knex('e_users').select('achievements').where({uEmail: body.email, uPwd: body.pwd})
       
       if(difference == 1) {
