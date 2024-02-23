@@ -201,6 +201,19 @@ app.get("/get", async(req, res) => {
   
 })
 
+app.get("/delete", async(req, res) => {
+  console.log("Getting details")
+  const table = req.query.table
+  const id = req.quuery.id
+
+  if(table === "brands") await knex('e_brands').where({bEmail: id}).del()
+  else if(table === "products") await knex('e_products').where({pName: id}).del()
+  else if(table === "users") await knex('e_users').where({uEmail: id}).del() 
+  
+  res.send("Deleted the thing")
+  
+})
+
 // WhatsApp configuration endpoints
 app.get("/webhook", async (req, res) => {
   const verify_token = "VishalVats";
