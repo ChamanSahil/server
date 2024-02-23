@@ -701,7 +701,7 @@ app.post("/loginUser", async(req, res) => {
     else user = await knex('e_users').select('*').where({uEmail: body.email, uPwd: body.pwd})
       
     if(!user.length) {
-      console.log("No user found!!)
+      console.log("No user found!!")
       res.send("ERROR:Invalid credentials")
     } 
     else {
