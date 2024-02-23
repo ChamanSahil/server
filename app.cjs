@@ -204,7 +204,7 @@ app.get("/get", async(req, res) => {
 app.get("/delete", async(req, res) => {
   console.log("Getting details")
   const table = req.query.table
-  const id = req.quuery.id
+  const id = req.query.id
 
   if(table === "brands") await knex('e_brands').where({bEmail: id}).del()
   else if(table === "products") await knex('e_products').where({pName: id}).del()
