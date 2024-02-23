@@ -273,7 +273,7 @@ app.post("/webhook", async (req, res) => {
       
       //step1: find whether the incoming mesg is sent by a valid user phone
       try {
-        const users = await knex('e_users').select('*').where({uPhoneNo: from})
+        const users = await knex('e_users').select('*').where({uPhoneNo: `+${from}`})
         if(!users.length) {
           sendMsg(from, "*It seems that you are not registered on Ennovation platform.*\n\nGet yourself register on the extension and then try the WhatsApp integration",true,"text")
         } 
