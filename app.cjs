@@ -732,7 +732,9 @@ app.post("/loginUser", async(req, res) => {
       }
       
       console.log("Current date is " + currDate)
-      await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({lastLogin: currDate})
+
+      if(byPass) await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({lastLogin: currDate})
+      else await knex('e_users').where({uEmail: body.email, uPwd: body.pwd}).update({lastLogin: currDate})
 
       if(achievements[0]["achievements"].includes("l")) {
         res.send(user[0]["uName"]+":"+user[0]["uPoints"] + ":" + streak + ":" + "old" + ":" + user[0]["tag"] + ":" + user[0]["tagAmount"] + ":" + user[0]["orderID"] + ":" + user[0]["uPhoneNo"])
